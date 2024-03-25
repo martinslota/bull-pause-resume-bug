@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  redis-cluster:
+    image: grokzen/redis-cluster:7.0.10
+    container_name: redis-cluster
+    environment:
+      - INITIAL_PORT=30000
+    expose:
+      - "30000-30005"
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "30000", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+
+  test-runner:
+    image: node:20
+    working_dir: /app
+    command: ["node", "index.js"]
+    container_name: test-runner
+    # environment:
+    #   - DEBUG=*
+    depends_on:
+      redis-cluster:
+        condition: service_healthy
+    volumes:
+      - .:/app

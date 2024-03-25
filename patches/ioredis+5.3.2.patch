@@ -1,0 +1,13 @@
+diff --git a/node_modules/ioredis/built/cluster/index.js b/node_modules/ioredis/built/cluster/index.js
+index 25c5173..3ab0cb0 100644
+--- a/node_modules/ioredis/built/cluster/index.js
++++ b/node_modules/ioredis/built/cluster/index.js
+@@ -234,7 +234,7 @@ class Cluster extends Commander_1.default {
+                 return "OK";
+             }
+             throw err;
+-        }))).then(() => "OK"), callback);
++        }))).then(() => new Promise((resolve) => setTimeout(() => resolve("OK"), 0))), callback);
+     }
+     /**
+      * Create a new instance with the same startup nodes and options as the current one.

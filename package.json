@@ -1,0 +1,41 @@
+{
+  "name": "bull-pause-resume-bug",
+  "version": "1.0.0",
+  "description": "Minimal-ish reproduce of a bug in Bull when pausing / resuming queues",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "postinstall": "patch-package",
+    "start": "docker compose up test-runner"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinslota/bull-pause-resume-bug.git"
+  },
+  "keywords": [
+    "Bull",
+    "bug",
+    "pause",
+    "resume",
+    "race",
+    "condition"
+  ],
+  "author": "Martin Slota",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martinslota/bull-pause-resume-bug/issues"
+  },
+  "homepage": "https://github.com/martinslota/bull-pause-resume-bug#readme",
+  "dependencies": {
+    "bull": "^4.12.2",
+    "patch-package": "^8.0.0",
+    "ioredis": "github:peakon/ioredis.git#47e2f738474f9ec4227526003d3137f06c6e03d5"
+  },
+  "overrides": {
+    "bull": {
+      "dependencies": {
+        "ioredis": "$ioredis"
+      }
+    }
+  }
+}
